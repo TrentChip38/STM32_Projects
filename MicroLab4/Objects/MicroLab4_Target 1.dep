@@ -1,0 +1,21 @@
+Dependencies for Project 'MicroLab4', Target 'Target 1': (DO NOT MODIFY !)
+CompilerVersion: 6220000::V6.22::ARMCLANG
+F (..\..\Downloads\Lab04_LCD_Extract\stm32l476xx.h)(0x66FECC91)()
+F (..\..\Downloads\Lab04_LCD_Extract\LCD.c)(0x6717171B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../AppData/Local/Keil_v5/ARM/PACK/Include-IC:/Users/trent/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.7.0/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="540" -DSTM32L476xx-o ./objects/lcd.o -MMD)
+I (..\..\Downloads\Lab04_LCD_Extract\LCD.h)(0x66FECC90)
+I (..\..\Downloads\Lab04_LCD_Extract\stm32l476xx.h)(0x66FECC91)
+I (..\..\AppData\Local\Keil_v5\ARM\PACK\Include\core_cm4.h)(0x654178DC)
+I (C:\Users\trent\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h)(0x66E0B99E)
+F (..\..\Downloads\Lab04_LCD_Extract\LCD.h)(0x66FECC90)()
+F (..\..\Downloads\Lab04_LCD_Extract\main.c)(0x671A80AB)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../AppData/Local/Keil_v5/ARM/PACK/Include-IC:/Users/trent/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.7.0/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="540" -DSTM32L476xx-o ./objects/main.o -MMD)
+I (..\..\Downloads\Lab04_LCD_Extract\stm32l476xx.h)(0x66FECC91)
+I (..\..\AppData\Local\Keil_v5\ARM\PACK\Include\core_cm4.h)(0x654178DC)
+I (C:\Users\trent\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h)(0x66E0B99E)
+I (..\..\Downloads\Lab04_LCD_Extract\LCD.h)(0x66FECC90)
+F (..\..\Downloads\Lab04_LCD_Extract\startup_stm32l476xx.s)(0x66FECC90)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -Wa,armasm,--pd,"__EVAL SETA 1"-IC:/Users/trent/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.7.0/Drivers/CMSIS/Device/ST/STM32L4xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 540" -Wa,armasm,--pd,"STM32L476xx SETA 1"-o ./objects/startup_stm32l476xx.o)
+F (.\SysTick.c)(0x671A80A5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../AppData/Local/Keil_v5/ARM/PACK/Include-IC:/Users/trent/AppData/Local/Arm/Packs/Keil/STM32L4xx_DFP/2.7.0/Drivers/CMSIS/Device/ST/STM32L4xx/Include-D__UVISION_VERSION="540" -DSTM32L476xx-o ./objects/systick.o -MMD)
+I (SysTick.h)(0x671A7FEF)
+I (C:\Users\trent\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include\stm32l476xx.h)(0x66E0B99E)
+I (..\..\AppData\Local\Keil_v5\ARM\PACK\Include\core_cm4.h)(0x654178DC)
+I (C:\Users\trent\AppData\Local\Arm\Packs\Keil\STM32L4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include\system_stm32l4xx.h)(0x66E0B99E)
+F (.\SysTick.h)(0x671A7FEF)()
