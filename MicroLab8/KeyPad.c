@@ -1,16 +1,10 @@
-#include "KeyPad.h"
+#include "UART.h"
 #include "stm32l476xx.h"
 #define uchar unsigned char
 #define uint unsigned int
 	
-void KeyPad_Initialize(void){
-	//Mask Modes of B and C
-	GPIOB->MODER |= 0xFFFFFFFF;		//Moder = 111..
-	GPIOB->MODER &= 0x55555555;		//Mask to be 555.. set all as outputs
-	GPIOB->OTYPER |= 0x0000F000;	//Mask pins 12-15 to 1 in otyper
-	GPIOC->MODER &= 0xFFFFFF00;		//First 4 pins mode to 00 input
-	GPIOC->PUPDR &= 0xFFFFFF00;		//First 4 registers to 00
-	GPIOC->PUPDR |= 0x00000055;		//To be set to pull up (01)
+void UART_Initialize(void){
+	//Mask settup?
 }
 
 void delay_ms(uint ms) {

@@ -46,13 +46,5 @@ void SysTick_Handler(void){
 	
 	}
 }
-int SysTick_IsGoing(void){
-	return running;
-}
-void SysTick_Start(int time){
-	//Calling this will reset and start the clock
-	counter = 0;
-	clockSetTime = time;
-	running = 0;
-}
+
 
