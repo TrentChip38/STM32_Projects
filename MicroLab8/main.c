@@ -22,7 +22,8 @@ int main(void){
 	while(1){
 		//Interupts will constantly check for UART in
 		//Check character
-		//If T entered, get temp
+		//If T entered, start ADC
+		//Interupt for when ADC finishes
 		//Send temp over UART
 		//Keep waiting
 	}

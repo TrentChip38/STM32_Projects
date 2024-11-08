@@ -28,6 +28,13 @@ void UART_Initialize(void){
 	//Verify reception and transmisison optional
 }
 
-void USART_Write(USART_TypeDef * USARTx, uint * buffer, int nBytes){
+void USART_Write(USART_TypeDef *USART2, uint * buffer, int nBytes){
 	
+}
+
+void USART_Read (USART_TypeDef *USART2, uint *buffer, uint nBytes){
+	uint i;
+	for(i = 0; i < nBytes; i++){
+		while(!(USART2->ISR & USART_ISR_RXNE));
+	}
 }
