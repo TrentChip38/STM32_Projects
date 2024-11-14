@@ -24,7 +24,7 @@ int main(void){
 	
 	//Go forever taking new inputs and setting clock
 	while(1){
-	//Get minutes from user
+	/*//Get minutes from user
 	char ch = 0;
 	char min1 = 0;
 	char min2 = 0;
@@ -84,5 +84,10 @@ int main(void){
 		//If running, then this function will wait
 		stopped = SysTick_IsGoing();
 	}*/
+	//On and off at 6us period
+		GPIOB->ODR |= 0x00000010;
+		delay_ms(3);
+		GPIOB->ODR &= 0xFFFFFF0F;
+		delay_ms(3);
 	}
 }

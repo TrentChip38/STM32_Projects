@@ -10,7 +10,6 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6220000::V6.22::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -48,14 +47,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>MicroLab8</OutputName>
+          <OutputDirectory>.\</OutputDirectory>
+          <OutputName>RobotArm</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\Listings\</ListingPath>
+          <ListingPath>.\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -126,6 +125,47 @@
             <HexOffset>0</HexOffset>
             <Oh166RecLen>16</Oh166RecLen>
           </OPTHX>
+          <Simulator>
+            <UseSimulator>0</UseSimulator>
+            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
+            <RunToMain>1</RunToMain>
+            <RestoreBreakpoints>1</RestoreBreakpoints>
+            <RestoreWatchpoints>1</RestoreWatchpoints>
+            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
+            <RestoreFunctions>1</RestoreFunctions>
+            <RestoreToolbox>1</RestoreToolbox>
+            <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
+            <RestoreSysVw>1</RestoreSysVw>
+          </Simulator>
+          <Target>
+            <UseTarget>1</UseTarget>
+            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
+            <RunToMain>1</RunToMain>
+            <RestoreBreakpoints>1</RestoreBreakpoints>
+            <RestoreWatchpoints>1</RestoreWatchpoints>
+            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
+            <RestoreFunctions>0</RestoreFunctions>
+            <RestoreToolbox>1</RestoreToolbox>
+            <RestoreTracepoints>1</RestoreTracepoints>
+            <RestoreSysVw>1</RestoreSysVw>
+          </Target>
+          <RunDebugAfterBuild>0</RunDebugAfterBuild>
+          <TargetSelection>0</TargetSelection>
+          <SimDlls>
+            <CpuDll></CpuDll>
+            <CpuDllArguments></CpuDllArguments>
+            <PeripheralDll></PeripheralDll>
+            <PeripheralDllArguments></PeripheralDllArguments>
+            <InitializationFile></InitializationFile>
+          </SimDlls>
+          <TargetDlls>
+            <CpuDll></CpuDll>
+            <CpuDllArguments></CpuDllArguments>
+            <PeripheralDll></PeripheralDll>
+            <PeripheralDllArguments></PeripheralDllArguments>
+            <InitializationFile></InitializationFile>
+            <Driver>BIN\UL2CM3.DLL</Driver>
+          </TargetDlls>
         </DebugOption>
         <Utilities>
           <Flash1>
@@ -133,12 +173,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>1</Capability>
-            <DriverSelection>4096</DriverSelection>
+            <Capability>0</Capability>
+            <DriverSelection>-1</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -260,17 +300,17 @@
                 <Size>0x0</Size>
               </XRAM>
               <OCR_RVCT1>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT1>
               <OCR_RVCT2>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT2>
               <OCR_RVCT3>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT3>
@@ -280,7 +320,7 @@
                 <Size>0x100000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT5>
@@ -362,7 +402,7 @@
             </VariousControls>
           </Aads>
           <LDads>
-            <umfTarg>1</umfTarg>
+            <umfTarg>0</umfTarg>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
             <noStLib>0</noStLib>
@@ -374,7 +414,7 @@
             <ScatterFile></ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--diag_suppress=L6314W</Misc>
+            <Misc></Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -383,62 +423,9 @@
       <Groups>
         <Group>
           <GroupName>Source Group 1</GroupName>
-          <Files>
-            <File>
-              <FileName>startup_stm32l476xx.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\..\..\..\Downloads\Lab04_LCD (1)\startup_stm32l476xx.s</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l476xx.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\..\..\Downloads\Lab04_LCD (1)\stm32l476xx.h</FilePath>
-            </File>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>UART.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\UART.c</FilePath>
-            </File>
-            <File>
-              <FileName>UART.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\UART.h</FilePath>
-            </File>
-            <File>
-              <FileName>ADC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ADC.c</FilePath>
-            </File>
-            <File>
-              <FileName>ADC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\ADC.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>
   </Targets>
-
-  <RTE>
-    <apis/>
-    <components>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="6.1.0" condition="ARMv6_7_8-M Device">
-        <package name="CMSIS" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="6.1.0"/>
-        <targetInfos>
-          <targetInfo name="Target 1"/>
-        </targetInfos>
-      </component>
-    </components>
-    <files/>
-  </RTE>
 
 </Project>

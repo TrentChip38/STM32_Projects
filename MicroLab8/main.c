@@ -1,29 +1,28 @@
 #include "stm32l476xx.h"
+#include <stdio.h>
 #include "UART.h"
-
+#include "ADC.h"
 #define uchar unsigned char
 #define uint unsigned int
 
 int main(void){
-	//IDK if we need clocks or not... I just left them
 	//Enable the Internal High Speed oscillator (HSI)
 	RCC->CR |= RCC_CR_HSION;
-	while((RCC->CR & RCC_CR_HSIRDY) == 0);
-	//Enable GPIOB clock
-	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOBEN;
+	//RCC->CR |= RCC_CR_MSION;
+	//while((RCC->CR & RCC_CR_HSIRDY) == 0);
+	//Enable GPIOA clock
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
 	//Enable GPIOC clock
-	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOCEN;
+	//RCC->AHB2ENR |= RCC_AHB2ENR_GPIOCEN;
 	
-	
-	//Initialize UART
+	//Initialize UART and ADC
+	ADC_Initialize();
 	UART_Initialize();
-	
 	//Go forever taking new inputs and setting clock
 	while(1){
-		//Interupts will constantly check for UART in
-		//Check character
-		//If T entered, start ADC
-		//Interupt for when ADC finishes
+		//Interupts Constantly check for UART sent
+		//Check if character is T or t
+		//Interupt when ADC finishes
 		//Send temp over UART
 		//Keep waiting
 	}
