@@ -24,8 +24,15 @@ int main(void){
 	
 	//Go forever waiting for inturupts and turn on motor
 	while(1){
-	int time = 10000;
-	//delay_ms(1000);
-	WindMotor(time);
+		int time = 50;
+		RunMotorBaseRight(time);
+		RunMotorBaseLeft(time);
+		delay_ms(2000);
+		RunMotorArmDown(time);
+		RunMotorArmUp(time);
+		delay_ms(2000);
+		RunMotorMagDown(time);
+		RunMotorMagUp(time);
+		delay_ms(2000);
 	}
 }

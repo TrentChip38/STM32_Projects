@@ -44,12 +44,12 @@ void I2C_Start(I2C_TypeDef * I2Cx, uint DevAddress,uint Size, uint Direction){
     // Direction = 0: Master requests a write transfer 
     // Direction = 1: Master requests a read transfer 
      uint32_t tmpreg = I2Cx->CR2;
-     tmpreg &= (unint32_t)~((int32_t)(I2C_CR2_SADD   |  I2C_CR2_NBYTES  |
+     tmpreg &= (uint32_t)~((int32_t)(I2C_CR2_SADD   |  I2C_CR2_NBYTES  |
                                       I2C_CR2_RELOAD |  I2C_CR2_AUTOEND |
                                       I2C_CR2_RD_WRN |  I2C_CR2_START   |
                                       I2C_CR2_STOP)); 
 
-    if (Direction == READ_FROM_SLAVE) 
+    if (Direction == 0) //READ_FROM_SLAVE
         	tmpreg |= I2C_CR2_RD_WRN;   // Read from Slave 
     else 
         	tmpreg &= ~I2C_CR2_RD_WRN; // Write to Slave 
@@ -77,11 +77,11 @@ void I2C_WaitLineIdle(I2C_TypeDef * I2Cx){
 }
 
 uint I2C_SendData(I2C_TypeDef * I2Cx, uint SlaveAddress, uint * pData, uint Size){
-    int i; 
-    if (Size <= 0 || pData == NULL) return -1;
+    uint i; 
+    if (Size <= 0 || pData == 0) return -1;
 
     // Wait until the Line is idle 
-    I2C_WaitLineidle(I2Cx); 
+    I2C_WaitLineIdle(I2Cx); 
 
     // The Last argument: e = Sending data to the slave 
     I2C_Start(I2Cx, SlaveAddress, Size, 0);
@@ -111,9 +111,9 @@ uint I2C_SendData(I2C_TypeDef * I2Cx, uint SlaveAddress, uint * pData, uint Size
 
 uint I2C_ReceiveData(I2C_TypeDef * I2Cx, uint SlaveAddress, uint *pData, uint Size){
 	
-    int i; 
+    uint i; 
 
-    if (Size <= 0 || pData == NULL) return -1; 
+    if (Size <= 0 || pData == 0) return -1; 
 
-    I2C_WaitLineidle(I2Cx); 
+    I2C_WaitLineIdle(I2Cx); 
 }

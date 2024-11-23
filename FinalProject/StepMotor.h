@@ -6,5 +6,10 @@
 void StepMotor_Initialize(void);
 void delay_ms(uint);
 void RunMotor(int, int);
-void WindMotor(int);
+void RunMotorBaseRight(int);
+void RunMotorBaseLeft(int);
+void RunMotorArmUp(int);
+void RunMotorArmDown(int);
+void RunMotorMagUp(int);
+void RunMotorMagDown(int);
 #endif

@@ -4,8 +4,8 @@
 
 void StepMotor_Initialize(void){
 	//Motor ouputs to set
-	GPIOB->MODER |= 0xFFFFFF00;		//Moder = 111..
-	GPIOB->MODER &= 0x555555FF;		//Mask to be 555.. set all as outputs
+	GPIOB->MODER |= 0xFFFF00FF;		//Moder = 111..
+	GPIOB->MODER &= 0x5555FF55;		//Mask to be 555.. set all as outputs
 }
 
 void delay_ms(uint ms) {
@@ -48,33 +48,183 @@ void RunMotor(int time, int delay){
 	}
 }
 
-void WindMotor(int time){
+void RunMotorBaseRight(int steps){
 	//Run continuously for time
 	int wait = 10;
-	int steps = time*18;
+	//int steps = time*10;
 	for(int i = 0; i < steps; i++){
 		//Mask output 0011
-		GPIOB->ODR |= 0x000000F0;
-		GPIOB->ODR &= 0xFFFFFF3F;
+		GPIOB->ODR |= 0x0000000F;
+		GPIOB->ODR &= 0xFFFFFFF3;
 		//Delay for step to happen
 		delay_ms(wait);
 		//Mask output 0110
-		GPIOB->ODR |= 0x000000F0;
-		GPIOB->ODR &= 0xFFFFFF6F;
+		GPIOB->ODR |= 0x0000000F;
+		GPIOB->ODR &= 0xFFFFFFF6;
 		//Delay for step to happen
 		delay_ms(wait);
 		//Mask output 1100
-		GPIOB->ODR |= 0x000000F0;
-		GPIOB->ODR &= 0xFFFFFFCF;
+		GPIOB->ODR |= 0x0000000F;
+		GPIOB->ODR &= 0xFFFFFFFC;
 		//Delay for step to happen
 		delay_ms(wait);
 		//Mask output 1001
-		GPIOB->ODR |= 0x000000F0;
-		GPIOB->ODR &= 0xFFFFFF9F;
+		GPIOB->ODR |= 0x0000000F;
+		GPIOB->ODR &= 0xFFFFFFF9;
 		//Delay for step to happen
 		delay_ms(wait);
 		//Mask to turn off
-		GPIOB->ODR &= 0xFFFFFF0F;
+		GPIOB->ODR &= 0xFFFFFFF0;
+		//delay_ms(delay*10);
+	}
+}
+void RunMotorBaseLeft(int steps){
+	//Run continuously for time
+	int wait = 10;
+	//int steps = time*10;
+	for(int i = 0; i < steps; i++){
+		//Mask output 0011
+		GPIOB->ODR |= 0x0000000F;
+		GPIOB->ODR &= 0xFFFFFFF9;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 0110
+		GPIOB->ODR |= 0x0000000F;
+		GPIOB->ODR &= 0xFFFFFFFC;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 1100
+		GPIOB->ODR |= 0x0000000F;
+		GPIOB->ODR &= 0xFFFFFFF6;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 1001
+		GPIOB->ODR |= 0x0000000F;
+		GPIOB->ODR &= 0xFFFFFFF3;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask to turn off
+		GPIOB->ODR &= 0xFFFFFFF0;
+		//delay_ms(delay*10);
+	}
+}
+void RunMotorArmUp(int steps){
+	//Run continuously for time
+	int wait = 15;
+	//int steps = time*10;
+	for(int i = 0; i < steps; i++){
+		//Mask output 0011
+		GPIOB->ODR |= 0x00000F00;
+		GPIOB->ODR &= 0xFFFFF3FF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 0110
+		GPIOB->ODR |= 0x00000F00;
+		GPIOB->ODR &= 0xFFFFF6FF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 1100
+		GPIOB->ODR |= 0x00000F00;
+		GPIOB->ODR &= 0xFFFFFCFF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 1001
+		GPIOB->ODR |= 0x00000F00;
+		GPIOB->ODR &= 0xFFFFF9FF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask to turn off
+		GPIOB->ODR &= 0xFFFFF0FF;
+		//delay_ms(delay*10);
+	}
+}
+void RunMotorArmDown(int steps){
+	//Run continuously for time
+	int wait = 15;
+	//int steps = time*10;
+	for(int i = 0; i < steps; i++){
+		//Mask output 0011
+		GPIOB->ODR |= 0x00000F00;
+		GPIOB->ODR &= 0xFFFFF9FF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 0110
+		GPIOB->ODR |= 0x00000F00;
+		GPIOB->ODR &= 0xFFFFFCFF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 1100
+		GPIOB->ODR |= 0x00000F00;
+		GPIOB->ODR &= 0xFFFFF6FF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 1001
+		GPIOB->ODR |= 0x00000F00;
+		GPIOB->ODR &= 0xFFFFF3FF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask to turn off
+		GPIOB->ODR &= 0xFFFFF0FF;
+		//delay_ms(delay*10);
+	}
+}
+void RunMotorMagUp(int steps){
+	//Run continuously for time
+	int wait = 10;
+	//int steps = time*10;
+	for(int i = 0; i < steps; i++){
+		//Mask output 0011
+		GPIOB->ODR |= 0x0000F000;
+		GPIOB->ODR &= 0xFFFF3FFF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 0110
+		GPIOB->ODR |= 0x0000F000;
+		GPIOB->ODR &= 0xFFFF6FFF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 1100
+		GPIOB->ODR |= 0x0000F000;
+		GPIOB->ODR &= 0xFFFFCFFF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 1001
+		GPIOB->ODR |= 0x0000F000;
+		GPIOB->ODR &= 0xFFFF9FFF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask to turn off
+		GPIOB->ODR &= 0xFFFF0FFF;
+		//delay_ms(delay*10);
+	}
+}
+void RunMotorMagDown(int steps){
+	//Run continuously for time
+	int wait = 10;
+	//int steps = time*10;
+	for(int i = 0; i < steps; i++){
+		//Mask output 0011
+		GPIOB->ODR |= 0x0000F000;
+		GPIOB->ODR &= 0xFFFF9FFF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 0110
+		GPIOB->ODR |= 0x0000F000;
+		GPIOB->ODR &= 0xFFFFCFFF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 1100
+		GPIOB->ODR |= 0x0000F000;
+		GPIOB->ODR &= 0xFFFF6FFF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask output 1001
+		GPIOB->ODR |= 0x0000F000;
+		GPIOB->ODR &= 0xFFFF3FFF;
+		//Delay for step to happen
+		delay_ms(wait);
+		//Mask to turn off
+		GPIOB->ODR &= 0xFFFF0FFF;
 		//delay_ms(delay*10);
 	}
 }
