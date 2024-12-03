@@ -10,7 +10,7 @@ void WiiChuck_Initialize(I2C_TypeDef * I2Cx){
 	GPIOB->OSPEEDR |= 0x00005000;
 	//01 = Pull-up
 	GPIOB->PUPDR &= 0xFFFF0FFF;
-	GPIOB->PUPDR |= 0x00005000;
+	//GPIOB->PUPDR |= 0x00005000;
 	
 	//Initialize I2C communication for Wii Nunchuck
 	RCC->APB1ENR1 |= RCC_APB1ENR1_I2C1EN; // I2Cl clock enable 
@@ -34,12 +34,13 @@ void WiiChuck_Initialize(I2C_TypeDef * I2Cx){
 	//If Systimer = 80MHx, PRESC = 7, 80m/(1+presc) = 10MHz
 	//Ours: PRESC = 39, 4MHz/(1+PRESC) = 100kHz
 	I2Cx->TIMINGR &= ~I2C_TIMINGR_PRESC; //Clear the prescaler
-	I2Cx->TIMINGR |= 39U << 28;	//Set clock prescaler
+	/*I2Cx->TIMINGR |= 0U << 28;	//Set clock prescaler
 	//Might need to multiply all these by 10? But idk how this format works
-	I2Cx->TIMINGR |= 490U;			//SCLL Low period
-	I2Cx->TIMINGR |= 490U << 8; //SCLH High period
-	I2Cx->TIMINGR |= 140U << 20;	//SCLDEL Data setup time
-	I2Cx->TIMINGR |= 150U << 16;	//SDADEL Data hold time
+	I2Cx->TIMINGR |= 18U;			//SCLL Low period
+	I2Cx->TIMINGR |= 15U << 8; //SCLH High period
+	I2Cx->TIMINGR |= 39U << 20;	//SCLDEL Data setup time
+	I2Cx->TIMINGR |= 40U << 16;	//SDADEL Data hold time*/
+	I2Cx->TIMINGR = (0x4 << 28) | (0x13 << 20) | (0xF << 16) | (0x2 << 8) | 0x4;
 	
 	//I2C own address 1 register (I2C_OAR1)
 	I2Cx->OAR1 &= ~I2C_OAR1_OA1EN;

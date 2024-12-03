@@ -10,9 +10,17 @@
 #define uint unsigned int
 
 int main(void){
-	//Enable the Internal High Speed oscillator (HSI)
-	//RCC->CR |= RCC_CR_HSION;
-	//while((RCC->CR & RCC_CR_HSIRDY) == 0);
+	// 1. Enable HSI
+	RCC->CR |= RCC_CR_HSION;
+	while((RCC->CR & RCC_CR_HSIRDY) == 0); // Wait until HSI is ready
+
+	// 2. Set HSI as the system clock source
+	RCC->CFGR &= ~RCC_CFGR_SW;            // Clear SW bits
+	RCC->CFGR |= RCC_CFGR_SW_HSI;         // Set SW bits to select HSI as system clock
+
+	// 3. Wait until HSI is used as the system clock
+	while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_HSI);
+
 /*	/////////////////////////chat gpt
 // 1. Enable HSI (already done in your code)
 // 2. Configure the PLL
