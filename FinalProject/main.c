@@ -10,7 +10,7 @@
 #define uint unsigned int
 
 int main(void){
-	// 1. Enable HSI
+/*	// 1. Enable HSI
 	RCC->CR |= RCC_CR_HSION;
 	while((RCC->CR & RCC_CR_HSIRDY) == 0); // Wait until HSI is ready
 
@@ -21,7 +21,7 @@ int main(void){
 	// 3. Wait until HSI is used as the system clock
 	while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_HSI);
 
-/*	/////////////////////////chat gpt
+	/////////////////////////chat gpt
 // 1. Enable HSI (already done in your code)
 // 2. Configure the PLL
 RCC->PLLCFGR = 0; // Reset PLL configuration
@@ -45,8 +45,8 @@ RCC->CFGR |= RCC_CFGR_SW_PLL;
 	//Enable GPIOC clock
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOCEN;
 	//Initialize things
-	WiiChuck_Initialize(I2C1);
 	StepMotor_Initialize();
+	WiiChuck_Initialize(I2C1);
 	//SysTick_Initialize();
 	
 	//Go forever waiting for inturupts and turn on motor
@@ -60,11 +60,11 @@ RCC->CFGR |= RCC_CFGR_SW_PLL;
 		data2[0] = 0x00;
 		
 		//Send to enable wii registers
-		sent = I2C_SendData(I2C1, 0x52, data1, 2);
-		sent = I2C_SendData(I2C1, 0x52, data2, 1);
+		//sent = I2C_SendData(I2C1, 0x52U << 1, data1, 2);
+		//sent = I2C_SendData(I2C1, 0x52U << 1, data2, 1);
 		//Get response register data
-		sent = I2C_ReceiveData(I2C1, 0x52, data3, 6);
-		
+		//sent = I2C_ReceiveData(I2C1, 0x52U << 1, data3, 6);
+		/*
 		int time = 50;
 		RunMotorBaseRight(time);
 		RunMotorBaseLeft(time);
@@ -74,6 +74,6 @@ RCC->CFGR |= RCC_CFGR_SW_PLL;
 		delay_ms(2000);
 		RunMotorMagDown(time);
 		RunMotorMagUp(time);
-		delay_ms(2000);
+		delay_ms(2000);*/
 	}
 }

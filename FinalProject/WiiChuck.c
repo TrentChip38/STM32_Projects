@@ -7,10 +7,22 @@ void WiiChuck_Initialize(I2C_TypeDef * I2Cx){
 	//Open drain
 	GPIOB->OTYPER &= 0x000000C0;
 	//Medium speed??
-	GPIOB->OSPEEDR |= 0x00005000;
+	//GPIOB->OSPEEDR |= 0x00005000;
 	//01 = Pull-up
 	GPIOB->PUPDR &= 0xFFFF0FFF;
 	//GPIOB->PUPDR |= 0x00005000;
+	
+	// Set alternate function AF4 for pins 6 and 7 on GPIOB
+	//GPIOB->AFR[0] &= ~(GPIO_AFRL_AFRL2 | GPIO_AFRL_AFRL3);
+	//GPIOB->AFR[0] |= 0x7700;
+	//GPIOB->AFR[0] &= ~(GPIO_AFRL_AFSEL6 | GPIO_AFRL_AFSEL7); // Clear AF bits
+	//GPIOB->AFR[0] |= (4 << (GPIO_AFRL_AFSEL6)) | (4 << (GPIO_AFRL_AFSEL7)); // Set AF4
+	// 3. Configure AF4 for PB6 and PB7 in AFRL
+	//GPIOB->AFR[0] &= ~((0xF << (6 * 4)) | (0xF << (7 * 4))); // Clear AFRL for PB6 and PB7
+	//GPIOB->AFR[0] |= (4 << (6 * 4)) | (4 << (7 * 4));        // Set AFRL to '4' (AF4)
+	//set alt function
+	GPIOB->AFR[0] &= 0x00FFFFFF;
+	GPIOB->AFR[0] |= 0x44000000;
 	
 	//Initialize I2C communication for Wii Nunchuck
 	RCC->APB1ENR1 |= RCC_APB1ENR1_I2C1EN; // I2Cl clock enable 
@@ -34,13 +46,13 @@ void WiiChuck_Initialize(I2C_TypeDef * I2Cx){
 	//If Systimer = 80MHx, PRESC = 7, 80m/(1+presc) = 10MHz
 	//Ours: PRESC = 39, 4MHz/(1+PRESC) = 100kHz
 	I2Cx->TIMINGR &= ~I2C_TIMINGR_PRESC; //Clear the prescaler
-	/*I2Cx->TIMINGR |= 0U << 28;	//Set clock prescaler
+	I2Cx->TIMINGR |= 7U << 28;	//Set clock prescaler
 	//Might need to multiply all these by 10? But idk how this format works
-	I2Cx->TIMINGR |= 18U;			//SCLL Low period
-	I2Cx->TIMINGR |= 15U << 8; //SCLH High period
-	I2Cx->TIMINGR |= 39U << 20;	//SCLDEL Data setup time
-	I2Cx->TIMINGR |= 40U << 16;	//SDADEL Data hold time*/
-	I2Cx->TIMINGR = (0x4 << 28) | (0x13 << 20) | (0xF << 16) | (0x2 << 8) | 0x4;
+	I2Cx->TIMINGR |= 49U;			//SCLL Low period
+	I2Cx->TIMINGR |= 49U << 8; //SCLH High period
+	I2Cx->TIMINGR |= 14U << 20;	//SCLDEL Data setup time
+	I2Cx->TIMINGR |= 15U << 16;	//SDADEL Data hold time*/
+	//I2Cx->TIMINGR = (0 << 28) | (14 << 20) | (4 << 16) | (50 << 8) | 52;
 	
 	//I2C own address 1 register (I2C_OAR1)
 	I2Cx->OAR1 &= ~I2C_OAR1_OA1EN;
@@ -106,7 +118,12 @@ uint I2C_SendData(I2C_TypeDef * I2Cx, uint SlaveAddress, uint * pData, uint Size
         // data to be transmitted must be written in the TXDR register. It is 
         // cleared when the next data to be sent is written in the TXDR register. 
         // The TXIS flag is not set when a NACK is received. 
-        while( (I2Cx->ISR & I2C_ISR_TXIS) == 0 );
+        while( (I2Cx->ISR & I2C_ISR_TXIS) == 0 ){
+					if (I2Cx->ISR & I2C_ISR_NACKF) {
+					I2C_Stop(I2Cx);  // Generate a stop condition to reset the bus
+					return -1;       // Return error
+					}
+				}
 //Debugging stuck here (Changed TXIS to TXE)
         // TXIS is cleared by writing to the TXDR register 
         I2Cx->TXDR = pData[i] & I2C_TXDR_TXDATA;
@@ -114,11 +131,14 @@ uint I2C_SendData(I2C_TypeDef * I2Cx, uint SlaveAddress, uint * pData, uint Size
     }
 
     // Wait until TC flag is set 
-    while((I2Cx->ISR & I2C_ISR_TC) == 0 && (I2Cx->ISR & I2C_ISR_NACKF) == 0);
+    while((I2Cx->ISR & I2C_ISR_TC) == 0){
 //Also stuck here^^
     if( (I2Cx->ISR & I2C_ISR_NACKF) != 0 ) 
         return -1; 
-
+	}
+		if( (I2Cx->ISR & I2C_ISR_NACKF) != 0 ) 
+        return -1; 
+		
     I2C_Stop(I2Cx);
 
     return 0;
